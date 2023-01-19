@@ -1,18 +1,20 @@
 package com.bean;
 
-public class Batch {
-
+public class BatchDetails {
 	private int batchId;
 	private int courseId;
 	private int facultyId;
 	private int numberofStudents;
 	private String batchstartDate;
 	private int duration;
-	public Batch() {
+	private String facultyName;
+	private String courseName;
+	public BatchDetails() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Batch(int batchId, int courseId, int facultyId, int numberofStudents, String batchstartDate, int duration) {
+	public BatchDetails(int batchId, int courseId, int facultyId, int numberofStudents, String batchstartDate,
+			int duration, String facultyName, String courseName) {
 		super();
 		this.batchId = batchId;
 		this.courseId = courseId;
@@ -20,12 +22,14 @@ public class Batch {
 		this.numberofStudents = numberofStudents;
 		this.batchstartDate = batchstartDate;
 		this.duration = duration;
+		this.facultyName = facultyName;
+		this.courseName = courseName;
 	}
 	@Override
 	public String toString() {
-		return "Batch [batchId=" + batchId + ", courseId=" + courseId + ", facultyId=" + facultyId
+		return "BatchDetails [batchId=" + batchId + ", courseId=" + courseId + ", facultyId=" + facultyId
 				+ ", numberofStudents=" + numberofStudents + ", batchstartDate=" + batchstartDate + ", duration="
-				+ duration + "]";
+				+ duration + ", facultyName=" + facultyName + ", courseName=" + courseName + "]";
 	}
 	public int getBatchId() {
 		return batchId;
@@ -62,6 +66,18 @@ public class Batch {
 	}
 	public void setDuration(int duration) {
 		this.duration = duration;
+	}
+	public String getFacultyName() {
+		return facultyName;
+	}
+	public void setFacultyName(String facultyName) {
+		this.facultyName = facultyName;
+	}
+	public String getCourseName() {
+		return courseName;
+	}
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
 	}
 	
 	
