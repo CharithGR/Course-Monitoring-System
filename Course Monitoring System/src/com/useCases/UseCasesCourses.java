@@ -7,14 +7,20 @@ import com.dao.CourseDAO;
 import com.dao.CourseDAOImpl;
 import com.exception.CoursesException;
 
-public class AddNewCourse {
-	
+public class UseCasesCourses {
+
 	 public static final String RESET = "\033[0m";
 	 public static final String RED = "\033[0;31m";
 	 public static final String GREEN = "\033[0;32m";
 	 
 	public static void main(String[] args) {
-		Scanner sc=new Scanner(System.in);
+		addNewCourse();
+		
+
+	}
+	
+	public static void addNewCourse() {
+	Scanner sc=new Scanner(System.in);
 		
 		CourseDAO dao=new CourseDAOImpl();
 		Course course =new Course();
@@ -68,8 +74,5 @@ public class AddNewCourse {
 		
 		
 		sc.close();
-		
-
 	}
-
 }
