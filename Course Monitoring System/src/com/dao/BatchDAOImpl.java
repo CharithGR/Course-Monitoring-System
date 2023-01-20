@@ -79,4 +79,79 @@ public class BatchDAOImpl implements BatchDAO {
 		return null;
 	}
 
+	@Override
+	public String removebatch(int id) throws BatchException {
+		try(Connection conn=DBUtil.getConnection()){
+			PreparedStatement ps=conn.prepareStatement("delete from batch where batchid=?");
+			ps.setInt(1, id);
+			int rows=ps.executeUpdate();
+			if(rows>0)return "Batch Deleted Successfully";
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			throw new BatchException(e.getMessage());
+		}
+		return null;
+	}
+
+	@Override
+	public String updateFaculty(int newfacultyid, int batchid) throws BatchException {
+try(Connection conn=DBUtil.getConnection()){
+			
+			PreparedStatement ps=conn.prepareStatement("update batch set facultyid=? where batchid=?");
+					
+			ps.setInt(2,batchid);
+			ps.setInt(1,newfacultyid);
+			
+		
+			
+			int rows=ps.executeUpdate();
+			if(rows>0) {
+				return "New Faculty added to batch successfully";
+			}
+			
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			throw new BatchException(e.getMessage());
+		}
+		
+		return null;
+	}
+
+	@Override
+	public List<BatchDetails> getAllBatchDeatilsOfparticularfaculty(int facultyId) throws BatchException {
+		try(Connection conn=DBUtil.getConnection()){
+			List<BatchDetails> li=new ArrayList<>();
+			boolean flag=false;
+			PreparedStatement ps=conn.prepareStatement("select b.BatchID, b.CourseID, "
+					+ "b.facultyID, f.facultyName,c.courseName,b.NumberOfStudents, "
+					+ "b.BatchStartDate, b.Duration from \r\n"
+					+ "Batch b inner join faculty f inner join courses c On \r\n"
+					+ "b.facultyid=f.facultyid and b.courseid=c.courseid and b.facultyid=? "
+					+ "order by b.batchStartDate asc;");
+			ps.setInt(1, facultyId);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				flag=true;
+				BatchDetails batch=new BatchDetails();
+				batch.setBatchId(rs.getInt("BatchID"));
+				batch.setCourseId(rs.getInt("CourseID"));
+				batch.setFacultyId(rs.getInt("facultyID"));
+				batch.setFacultyName(rs.getString("facultyName"));
+				batch.setCourseName(rs.getString("courseName"));
+				batch.setNumberofStudents(rs.getInt("NumberOfStudents"));
+				batch.setBatchstartDate(rs.getString("BatchStartDate"));
+				batch.setDuration(rs.getInt("Duration"));
+				li.add(batch);				
+			}
+			if(flag)return li;
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			throw new BatchException(e.getMessage());
+		}
+		return null;
+	}
+
 }

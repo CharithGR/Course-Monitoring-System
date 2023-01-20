@@ -10,7 +10,9 @@ import com.dao.CourseDAOImpl;
 import com.exception.CoursesException;
 
 public class CoursesUseCases {
+	private static 	Scanner sc=new Scanner(System.in);
 
+	
 	 public static final String RESET = "\033[0m";
 	 public static final String RED = "\033[0;31m";
 	 public static final String GREEN = "\033[0;32m";
@@ -20,11 +22,11 @@ public class CoursesUseCases {
 //		getAllCourseDetails();
 //		updateCourseFeesUsindId();
 //		deleteCourseByID();
+//		updateCourseDescriprion();
 
 	}
 	
 	public static void addNewCourse() {
-		Scanner sc=new Scanner(System.in);
 		
 		CourseDAO dao=new CourseDAOImpl();
 		Course course =new Course();
@@ -76,7 +78,6 @@ public class CoursesUseCases {
 		
 		
 		
-		sc.close();
 	}
 	
 	public static void getAllCourseDetails() {
@@ -113,7 +114,6 @@ public class CoursesUseCases {
 	}
 	
 	public static void updateCourseFeesUsindId() {
-		Scanner sc=new Scanner(System.in);
 		
 		CourseDAO dao=new CourseDAOImpl();
 		
@@ -146,10 +146,8 @@ public class CoursesUseCases {
 			System.out.println(GREEN+res+RESET);
 		}
 		
-		sc.close();
 	}
 	public static void deleteCourseByID() {
-		Scanner sc=new Scanner(System.in);
 		
 		CourseDAO dao=new CourseDAOImpl();
 		
@@ -160,7 +158,6 @@ public class CoursesUseCases {
 		    System.out.print( RED+"Please enter a valid number "+RESET); 
 		}
 		int id=sc.nextInt();
-		
 		String res=null;
 		try {
 			res=dao.deleteCourse(id);
@@ -173,6 +170,33 @@ public class CoursesUseCases {
 		}else {
 			System.out.println(GREEN+res+RESET);
 		}
-		sc.close();
+	}
+	public static void updateCourseDescriprion() {
+CourseDAO dao=new CourseDAOImpl();
+		
+		System.out.println("Enter course id");
+		while (!sc.hasNextInt()) 
+		{        
+		    sc.next(); 
+		    System.out.print( RED+"Please enter a valid number "+RESET); 
+		}
+		int id=sc.nextInt();
+		sc.nextLine();
+
+		System.out.println("Enter new Course Description");
+		String desc=sc.nextLine();
+			
+		String res=null;
+		try {
+			res=dao.updateCourseDescription(id, desc);
+		} catch (CoursesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(res==null) {
+			System.out.println(RED+"Fees not updated"+RESET);
+		}else {
+			System.out.println(GREEN+res+RESET);
+		}
 	}
 }

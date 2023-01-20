@@ -9,5 +9,6 @@ public interface CourseDAO {
 	public String addNewCourse(Course course)throws CoursesException;
 	public List<Course> getAllCourseDeatils()throws CoursesException;
 	public String updateCourseFees(int id,int fees)throws CoursesException;
+	public String updateCourseDescription(int id,String Descriprion)throws CoursesException;
 	public String deleteCourse(int id)throws CoursesException;;
 }
