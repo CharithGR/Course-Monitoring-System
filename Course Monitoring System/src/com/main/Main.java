@@ -3,7 +3,9 @@ package com.main;
 import java.util.Scanner;
 
 import com.bean.Admin;
+import com.bean.Faculty;
 import com.useCases.AdminUseCases;
+import com.useCases.FacultyUseCases;
 
 public class Main {
 	private static Scanner sc=new Scanner(System.in);
@@ -59,16 +61,31 @@ public class Main {
 			System.out.println("Press y to try again or any other key to exit");
 				String choice=sc.next();
 				if(choice.equalsIgnoreCase("y"))adminLogin();	
+				else main(null);
 			
 		}else {
-			System.out.println(GREEN+"Login Successful");
+			System.out.println(GREEN+"\nLogin Successful");
 			System.out.println("Welcome "+ admin.getUsername()+RESET);
+			AdminLoggedIn.adminLoggedIn();
 			
 		}
-		AdminLoggedIn.adminLoggedIn();
+		
 		
 	}
 	public static void facultyLogin() {
+		Faculty faculty=new Faculty();
+		faculty=FacultyUseCases.facultyLogin();
+		if(faculty==null) {
+			System.out.println(RED+"Incorrect username or password"+RESET);
+			System.out.println("Press y to try again or any other key to exit");
+				String choice=sc.next();
+				if(choice.equalsIgnoreCase("y"))facultyLogin();	
+				else main(null);
+		}else {
+			System.out.println(GREEN+"\nLogin Successful");
+			System.out.println("Welcome "+ faculty.getFacultyname()+RESET);
+			FacultyLoggedIn.facultyloggedIn(faculty);
+		}
 		
 	}
 

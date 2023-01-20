@@ -10,4 +10,6 @@ public interface FacultyDAO {
 	public List<Faculty> getAllFacultyDetails() throws FacultyException;
 	public Faculty facultyLogin(String email,String password)throws FacultyException;
 	public String removeFaculty(int id)throws FacultyException;
+	public String updatePassword(String email,String password)throws FacultyException;;
+	
 }

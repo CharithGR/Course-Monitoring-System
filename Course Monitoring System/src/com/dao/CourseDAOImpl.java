@@ -118,4 +118,31 @@ public class CourseDAOImpl implements CourseDAO {
 		return null;
 	}
 
+	@Override
+	public String updateCourseDescription(int id, String Descriprion) throws CoursesException {
+
+		try(Connection conn=DBUtil.getConnection()){
+			
+			PreparedStatement ps=conn.prepareStatement("update courses set courseDescription=? where courseid=?");
+				
+			ps.setString(1, Descriprion);
+			ps.setInt(2, id);		
+			  
+			int rows=ps.executeUpdate();
+			if(rows>0) {
+				return "Course Description updated successfully";
+			}
+			
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			throw new CoursesException(e.getMessage());
+		}
+		
+		
+		return null;
+	}
+
+	
+
 }

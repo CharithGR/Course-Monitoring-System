@@ -152,4 +152,22 @@ public class FacultyUseCases {
 		}
 		
 	}
+	
+	public static void updatepassword(String email,String password) {
+		FacultyDAO dao=new FacultyDaoImpl();
+		
+		String res=null;
+		
+		try {
+			res=dao.updatePassword(email, password);
+		} catch (FacultyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(res==null) {
+			System.out.println(RED+"Your Password was not updated"+RESET);
+		}else {
+			System.out.println(GREEN+res+RESET);
+		}
+	}
 }
