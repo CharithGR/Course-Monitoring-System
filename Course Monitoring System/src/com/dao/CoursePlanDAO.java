@@ -12,6 +12,7 @@ public interface CoursePlanDAO {
 		public String updateStatus(int id,String status)throws CoursePlanException;
 		public List<CoursePlanDetails> getAllCoursePlanDeatils()throws CoursePlanException;
 		public List<CoursePlanDetails> getAllCoursePlanDeatilsOfAFaculty(int facultyid)throws CoursePlanException;
+		public String getStatus(int id)throws CoursePlanException;
 }
 
 

@@ -143,6 +143,25 @@ public class CoursePlanDAOImpl implements CoursePlanDAO {
 		return null;
 	}
 
+	@Override
+	public String getStatus(int id) throws CoursePlanException {
+try(Connection conn=DBUtil.getConnection()){
+			
+			PreparedStatement ps=conn.prepareStatement("select status from coursePlan where planid=?");
+			ps.setInt(1, id);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) {
+				return rs.getString("status");
+			}
+			
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			throw new CoursePlanException(e.getMessage());
+		}
+		return null;
+	}
+
 	
 
 }

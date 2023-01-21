@@ -21,7 +21,7 @@ public class CoursePlanUseCases {
 	public static void main(String[] args) {
 		addNewCoursePlan();
 //		updateStatus();
-//		getallCoursePlanDetails();
+		getallCoursePlanDetails();
 	}
 
 	public static void addNewCoursePlan() {
@@ -39,7 +39,7 @@ public class CoursePlanUseCases {
 		coursePlan.setBatchId(sc.nextInt());
 
 
-		System.out.println("Enter day Number( Sunday-1, Monday-2...)");
+		System.out.println("Enter day Number( Monday-1, Tuesday-2...)");
 		while (!sc.hasNextInt()) 
 		{        
 			sc.next(); 
@@ -111,15 +111,32 @@ public class CoursePlanUseCases {
 		}
 		int id=(sc.nextInt());
 		sc.nextLine();
-
-		System.out.println("Enter Status - Pending/Completed");
-		String temp=null;
-		while(sc.hasNextLine()) {
-			temp=sc.nextLine();
-			if(temp.equalsIgnoreCase("Pending") || temp.equalsIgnoreCase("Completed"))break;
-			else System.out.println("Please enter Pending or Completed only");
+		String status=null;
+		try {
+			status=(dao.getStatus(id));
+		} catch (CoursePlanException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
+		String temp=null;
+		
+		if(status.equalsIgnoreCase("pending")) {
+			temp="Completed";
+		}else if(status.equalsIgnoreCase("completed")) {
+			temp="Pending";
+		}
+		
+		
+		
+		
+//		System.out.println("Enter Status - Pending/Completed");
+//		String temp=null;
+//		while(sc.hasNextLine()) {
+//			temp=sc.nextLine();
+//			if(temp.equalsIgnoreCase("Pending") || temp.equalsIgnoreCase("Completed"))break;
+//			else System.out.println("Please enter Pending or Completed only");
+//		}
+		
 		String res=null;
 		try {
 			res=dao.updateStatus(id, temp);
@@ -150,9 +167,39 @@ public class CoursePlanUseCases {
 					+ "| PlanID | BatchID | facultyName | DayNumber |       Topic        |     Status     |\r\n"
 					+ "+--------+---------+-------------+-----------+--------------------+----------------+"+RESET);
 			li.forEach(x->{
+				
+				String day=null;
+				switch(x.getDaynumber()) {
+			      case 1:
+			        day="Monday";
+			        break;
+			      case 2:
+			    	  day="Tuesday";
+			        break;
+			      case 3:
+			    	  day="Wednesday";
+			        break;
+			      case 4:
+			    	  day="Thursday";
+			        break;
+			      case 5:
+			    	  day= "Friday";			        
+			        break;
+			      case 6:
+			    	  day="Saturday";
+			        break;
+			      case 7:
+			    	  day="Sunday";
+			        break;       
+			      default:
+			    	  day="Invalid day number";
+			        break;                      
+			    } 
+				
+				
 				 System.out.println(String.format("%9s %8s %13s %12s %20s %16s",
 						 x.getPlanId(),x.getBatchId(),x.getFacultyname(),
-						 x.getDaynumber(),x.getTopic(),x.getStatus()
+						 x.getDaynumber()+"("+day+")",x.getTopic(),x.getStatus()
 						 ));
 		});
 		}
@@ -176,9 +223,38 @@ public class CoursePlanUseCases {
 					+ "| PlanID | BatchID | facultyName | DayNumber |       Topic        |     Status     |\r\n"
 					+ "+--------+---------+-------------+-----------+--------------------+----------------+"+RESET);
 			li.forEach(x->{
+				
+				String day=null;
+				switch(x.getDaynumber()) {
+			      case 1:
+			        day="Monday";
+			        break;
+			      case 2:
+			    	  day="Tuesday";
+			        break;
+			      case 3:
+			    	  day="Wednesday";
+			        break;
+			      case 4:
+			    	  day="Thursday";
+			        break;
+			      case 5:
+			    	  day= "Friday";			        
+			        break;
+			      case 6:
+			    	  day="Saturday";
+			        break;
+			      case 7:
+			    	  day="Sunday";
+			        break;       
+			      default:
+			    	  day="Invalid day number";
+			        break;                      
+			    } 
+				
 				 System.out.println(String.format("%9s %8s %13s %12s %20s %16s",
 						 x.getPlanId(),x.getBatchId(),x.getFacultyname(),
-						 x.getDaynumber(),x.getTopic(),x.getStatus()
+						 x.getDaynumber()+"("+day+")",x.getTopic(),x.getStatus()
 						 ));
 		});
 		}
