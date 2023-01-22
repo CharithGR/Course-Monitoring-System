@@ -21,7 +21,7 @@ public class CoursePlanUseCases {
 	public static void main(String[] args) {
 		addNewCoursePlan();
 //		updateStatus();
-		getallCoursePlanDetails();
+//		getallCoursePlanDetails();
 	}
 
 	public static void addNewCoursePlan() {

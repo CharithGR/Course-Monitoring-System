@@ -98,7 +98,7 @@ public class FacultyLoggedIn {
 		System.out.println("Enter new password");
 		String password=sc.nextLine();
 		while(faculty.getPassword().equals(password)) {
-			System.out.println(RED+"New Password cannot be same as old password"+RESET);
+			System.out.println(RED+"New Password cannot be same as current password"+RESET);
 			System.out.println("Enter new password");
 			password=sc.nextLine();
 		}
