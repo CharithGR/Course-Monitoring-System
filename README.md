@@ -7,3 +7,20 @@ So the Automated Course Monitoring System will keep the records of all the cours
 ### ER Diagram
 
 <img src="https://github.com/CharithGR/sedate-bee-1602/blob/main/EER%20Diagram.png">
+
+### Types of Users
+ <li>Administrator </li>
+     <li> Faculty </li>
+     
+### Administrator
+<li>Add/remove Faculty</li>
+ <li>Add/Remove Batch, Update Faculty of Batch</li>
+  <li>Add/Remove/Update Course</li>
+   <li>Add/Update Course Plan</li>
+   
+   
+ ### Faculty
+  <li>View All Batches</li>
+  <li>View Course Plan</li>
+  <li>Change Password</li>
+  
