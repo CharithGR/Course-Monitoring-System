@@ -22,5 +22,6 @@ So the Automated Course Monitoring System will keep the records of all the cours
  ### Faculty
   <li>View All Batches</li>
   <li>View Course Plan</li>
+  <li>Change Course Plan Status</li>
   <li>Change Password</li>
   
